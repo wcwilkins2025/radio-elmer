@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radio Elmer</title>
+<meta name="description" content="Radio Elmer: a free desktop app for programming two-way radios, powered by CHIRP. Guidance, licence checks and safety for newer hams.">
+<meta property="og:title" content="Radio Elmer">
+<meta property="og:description" content="A free desktop app for programming two-way radios, powered by CHIRP.">
+<meta property="og:image" content="https://radioelmer.org/images/channels.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6feb'/%3E%3Cpath d='M16 7v18M9 12a10 10 0 0 0 0 8M23 12a10 10 0 0 1 0 8M5 9a15 15 0 0 0 0 14M27 9a15 15 0 0 1 0 14' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1b1f24;--muted:#5b6675;--line:#dde2e8;--accent:#1f6feb;--accent-ink:#fff;--soft:#eaf1fe;--warn-bg:#fff8e5;--warn:#9a6700}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--accent-ink:#0b0e13;--soft:#16233a;--warn-bg:#2b230f;--warn:#e3b341;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--accent-ink:#0b0e13;--soft:#16233a;--warn-bg:#2b230f;--warn:#e3b341;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent)}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header.bar{border-bottom:1px solid var(--line);background:var(--panel)}
+header.bar .wrap{display:flex;align-items:center;gap:20px;min-height:60px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+.brand svg{width:30px;height:30px}
+nav.links{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap;font-size:15px}
+nav.links a{color:var(--muted);text-decoration:none} nav.links a:hover{color:var(--accent)}
+.hero{padding:56px 0 32px}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;align-items:center}
+.tag{display:inline-block;font-size:13px;font-weight:600;color:var(--accent);background:var(--soft);border-radius:999px;padding:3px 12px;margin-bottom:14px}
+h1{font-size:44px;line-height:1.1;margin:0 0 14px;letter-spacing:-.5px}
+.lede{font-size:19px;color:var(--muted);margin:0 0 24px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;padding:11px 20px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent);background:transparent}
+.small{font-size:14px;color:var(--muted)}
+.shot{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);box-shadow:0 10px 30px rgba(15,25,40,.10)}
+section{padding:40px 0}
+h2{font-size:28px;margin:0 0 8px;letter-spacing:-.3px}
+.sub{color:var(--muted);margin:0 0 24px;max-width:720px}
+.elmer{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 28px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+.elmer .q{font-size:40px;line-height:1;color:var(--accent);font-weight:700}
+.elmer p{margin:0 0 8px}
+.features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.card h3{margin:0 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.tour{display:grid;gap:36px}
+.tour figure{margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:28px;align-items:center}
+.tour figure:nth-child(even){grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+.tour figure:nth-child(even) figcaption{order:2}
+.tour figcaption h3{margin:0 0 6px;font-size:20px}
+.tour figcaption p{margin:0;color:var(--muted)}
+.themes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.themes figure{margin:0}
+.themes figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.dl .card ol,.dl .card ul{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:15px}
+.dl .card .btn{margin-top:12px}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:8px;padding:12px 16px;margin:20px 0 0;font-size:15px}
+.chirp{background:var(--soft);border-radius:14px;padding:24px 28px}
+.chirp p{margin:0 0 8px}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
+code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
+@media (max-width:860px){
+  .hero{padding:32px 0 16px} .hero .grid{grid-template-columns:1fr;gap:24px}
+  h1{font-size:34px} .lede{font-size:17px}
+  .features,.dl{grid-template-columns:1fr}
+  .tour figure,.tour figure:nth-child(even){grid-template-columns:1fr;gap:12px}
+  .tour figure:nth-child(even) figcaption{order:0}
+  .themes{grid-template-columns:1fr}
+  .elmer{grid-template-columns:1fr;padding:20px}
+  nav.links{margin-left:0;gap:14px}
+  header.bar .wrap{padding-top:10px;padding-bottom:10px;gap:8px}
+}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="brand" href="#top" id="top">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1f6feb"/><path d="M16 7v18M9 12a10 10 0 0 0 0 8M23 12a10 10 0 0 1 0 8M5 9a15 15 0 0 0 0 14M27 9a15 15 0 0 1 0 14" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+    Radio Elmer
+  </a>
+  <nav class="links" aria-label="Site">
+    <a href="#features">Features</a>
+    <a href="#tour">Tour</a>
+    <a href="#download">Download</a>
+    <a href="manual.html">Manual</a>
+    <a href="https://github.com/wcwilkins2025/radio-elmer">GitHub</a>
+  </nav>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap grid">
+  <div>
+    <span class="tag">Free · open source · beta 0.9.0</span>
+    <h1>Program your radios with a mentor beside you.</h1>
+    <p class="lede">Radio Elmer is a free desktop app for programming two-way radios. It's <b>powered by CHIRP</b>, so it works with hundreds of cable-programmable radios, and it adds guidance, licence checks and safety nets for newer hams.</p>
+    <div class="cta">
+      <a class="btn primary" href="#download">Download for Windows</a>
+      <a class="btn ghost" href="manual.html">Read the manual</a>
+    </div>
+    <p class="small">Windows 10 and 11. Linux from source. Everything you need is included, CHIRP's drivers too.</p>
+  </div>
+  <div class="shot"><img src="images/channels.png" width="1360" height="860" alt="Radio Elmer's Channels tab, showing a list of repeater and weather channels for a radio"></div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="elmer">
+    <div class="q" aria-hidden="true">“</div>
+    <div>
+      <p><b>Why “Elmer”?</b> In ham radio an <b>Elmer</b> is the experienced operator who helps a newcomer get licensed, choose and program a radio, put up an antenna and make a first contact.</p>
+      <p style="color:var(--muted);margin:0">Radio Elmer tries to be that for programming: it explains what each setting does, checks your channels against your licence, shows every change before it reaches the radio, and keeps a backup of every read and send.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <h2>What it does</h2>
+  <p class="sub">Everything CHIRP's radio drivers can do, with help aimed at the operator who's just passed their exam.</p>
+  <div class="features">
+    <div class="card"><h3>📻 500+ radios</h3><p>Read, edit and send any radio CHIRP can program by cable. Tested on the BTECH UV-50X2 and Baofeng UV-5R.</p></div>
+    <div class="card"><h3>✅ Review before sending</h3><p>You edit a working copy. Every change is listed before it's sent, and the radio is read back afterwards to confirm.</p></div>
+    <div class="card"><h3>🪪 Licence checks</h3><p>Channels are checked against your US amateur licence class and mode (FCC Part 97). NOAA weather is receive-only; GMRS is never set to transmit.</p></div>
+    <div class="card"><h3>📍 Repeaters for the trip</h3><p>Find repeaters near a town or along a route, with reach estimates, plus NOAA weather channels for where you're going.</p></div>
+    <div class="card"><h3>💾 Backups kept</h3><p>Every read and send is backed up and the app never deletes a backup. Your home channels are locked unless you unlock them.</p></div>
+    <div class="card"><h3>🎧 Listen</h3><p>A car-radio style tuner for public KiwiSDR receivers, 0–30 MHz, with seek, presets and local noise reduction.</p></div>
+    <div class="card"><h3>🧭 Setup assistant</h3><p>On first start it walks you through your licence (with a call sign lookup), your home town and your radios.</p></div>
+    <div class="card"><h3>🔧 Your station</h3><p>An equipment list with SWR readings, and setup guides with a hook-up diagram and numbered steps.</p></div>
+    <div class="card"><h3>🎨 Easy on the eyes</h3><p>Light, dark, high contrast, Night (red) to keep your night vision, and a CHIRP classic look.</p></div>
+  </div>
+</div></section>
+
+<section id="tour"><div class="wrap">
+  <h2>A quick tour</h2>
+  <p class="sub">Screens from a demo station (N0CALL) near Waco, Texas.</p>
+  <div class="tour">
+    <figure>
+      <figcaption><h3>Setup assistant</h3><p>Three short steps on first start: your licence, your home, your radios. Your files are kept in <code>Documents\Radio Elmer</code>, separate from the app.</p></figcaption>
+      <div class="shot"><img src="images/setup-assistant.png" width="1360" height="700" loading="lazy" alt="The setup assistant dialog asking for a licence, home town and radios"></div>
+    </figure>
+    <figure>
+      <figcaption><h3>Find repeaters</h3><p>Search near a town or along a route. Each repeater shows distance, tone and an estimate of whether you'll reach it, and can be added with one click.</p></figcaption>
+      <div class="shot"><img src="images/find-repeaters.png" width="1360" height="860" loading="lazy" alt="Repeater search results for a route from Waco to Austin"></div>
+    </figure>
+    <figure>
+      <figcaption><h3>Your licence, explained</h3><p>See exactly what your class can transmit on, by band and mode. Radio Elmer refuses channels outside it, and you choose how strict it should be.</p></figcaption>
+      <div class="shot"><img src="images/licence.png" width="1360" height="1100" loading="lazy" alt="The Licences tab showing a General class licence and its privileges"></div>
+    </figure>
+    <figure>
+      <figcaption><h3>Several radios</h3><p>One base station and portables that keep in sync with it, so the family's handhelds always have the same channels as the car.</p></figcaption>
+      <div class="shot"><img src="images/my-radios.png" width="1360" height="640" loading="lazy" alt="The My radios list with a base station and a portable kept in sync"></div>
+    </figure>
+    <figure>
+      <figcaption><h3>Setup guides</h3><p>Build a guide for each way you set up your station: a hook-up diagram and numbered steps you can print and keep with the gear.</p></figcaption>
+      <div class="shot"><img src="images/setup-guide.png" width="1360" height="1000" loading="lazy" alt="A setup guide with a hook-up diagram and numbered steps"></div>
+    </figure>
+    <figure>
+      <figcaption><h3>Listen</h3><p>Tune public shortwave receivers around the world like a car radio: seek, step, six presets and noise reduction.</p></figcaption>
+      <div class="shot"><img src="images/listen.png" width="1360" height="720" loading="lazy" alt="The Listen tab, a car-radio style tuner"></div>
+    </figure>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Pick your look</h2>
+  <p class="sub">Change it any time under ⚙ App settings.</p>
+  <div class="themes">
+    <figure><div class="shot"><img src="images/chirp-classic.png" width="1360" height="860" loading="lazy" alt="Radio Elmer in the CHIRP classic colour scheme"></div><figcaption>CHIRP classic: the plain Windows look of the CHIRP app.</figcaption></figure>
+    <figure><div class="shot"><img src="images/night-red.png" width="1360" height="720" loading="lazy" alt="Radio Elmer in the Night red colour scheme"></div><figcaption>Night (red): dim red that keeps your night vision.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="download"><div class="wrap">
+  <h2>Download</h2>
+  <p class="sub">Radio Elmer is free under the GNU GPL v3. Downloads are on the project's GitHub releases page.</p>
+  <div class="dl">
+    <div class="card">
+      <h3>Windows installer</h3>
+      <p>The easy way. No admin rights needed.</p>
+      <ol><li>Download <b>Radio Elmer Setup</b>.</li><li>Run it and follow the steps.</li><li>Start Radio Elmer from the Start menu.</li></ol>
+      <a class="btn primary" href="https://github.com/wcwilkins2025/radio-elmer/releases/latest">Get the installer</a>
+    </div>
+    <div class="card">
+      <h3>Windows zip</h3>
+      <p>No install: unzip it anywhere and run.</p>
+      <ol><li>Download the <b>for Windows</b> zip.</li><li>Unzip it to a folder.</li><li>Double-click <b>Start Radio Elmer</b>.</li></ol>
+      <a class="btn ghost" href="https://github.com/wcwilkins2025/radio-elmer/releases/latest">Get the zip</a>
+    </div>
+    <div class="card">
+      <h3>Linux (and macOS)</h3>
+      <p>From source, with Python 3.10 or newer (with venv and pip) and Git.</p>
+      <ul><li>Download the source.</li><li>Run <code>sh start-radio-elmer.sh</code>; it sets up CHIRP the first time.</li><li>Tested on Ubuntu, except reading and sending over a cable. macOS should work but hasn't been tested.</li></ul>
+      <p class="small" style="margin:12px 0 0">The source code goes up on GitHub after the beta. Until then the Windows downloads include it, and you can ask for a copy by <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">opening an issue</a>.</p>
+    </div>
+  </div>
+  <p class="note"><b>This is a beta.</b> Windows will say the installer is from an “unknown publisher” because it isn't code-signed yet: choose <b>More info → Run anyway</b>. Radio Elmer backs up your radio before every send, but please keep your own copy of anything important, and <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">tell us what you find</a>.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="chirp">
+    <h2>Powered by CHIRP</h2>
+    <p>Radio Elmer talks to radios through the drivers of <a href="https://chirpmyradio.com">CHIRP</a>, the free radio programming project started by Dan Smith, KK7DS, and its many contributors. A snapshot of CHIRP comes with Radio Elmer, and the app tells you when a newer one is out so you can download it from chirpmyradio.com.</p>
+    <p style="margin:0">Radio Elmer is a separate project. Please report problems with Radio Elmer here, not to the CHIRP project. If you'd rather have CHIRP's own app, it's at <a href="https://chirpmyradio.com">chirpmyradio.com</a>.</p>
+  </div>
+</div></section>
+
+<section id="help"><div class="wrap">
+  <h2>Help and feedback</h2>
+  <div class="features">
+    <div class="card"><h3>📖 The manual</h3><p>Everything, from the first read of your radio to troubleshooting. It's also inside the app. <a href="manual.html">Open the manual</a>.</p></div>
+    <div class="card"><h3>🐞 Report a problem</h3><p>Use <b>Report a problem</b> in App settings: it gathers the details with call signs removed. Then <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">open an issue</a>.</p></div>
+    <div class="card"><h3>📡 Tested a radio?</h3><p>Tell us which radios work. Each report helps the next ham. <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">Share a radio test</a>.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>Radio Elmer 0.9.0-beta · free software under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a></span>
+  <span>Powered by <a href="https://chirpmyradio.com">CHIRP</a> · <a href="manual.html">Manual</a> · <a href="https://github.com/wcwilkins2025/radio-elmer">GitHub</a></span>
+</div></footer>
+</body>
+</html>

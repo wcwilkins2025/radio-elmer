@@ -1,0 +1,46 @@
+name: Problem report
+description: Something in Radio Elmer didn't work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! If a **radio** reads or writes wrongly, please try the same in the
+        CHIRP app first. If it goes wrong there too, it's a CHIRP driver problem: report it to
+        CHIRP (chirpmyradio.com) instead. Radio Elmer uses CHIRP's drivers but isn't part of CHIRP.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead. Exact messages help.
+    validations:
+      required: true
+  - type: input
+    id: radio
+    attributes:
+      label: Radio make and model
+      placeholder: e.g. Baofeng UV-5R
+  - type: dropdown
+    id: os
+    attributes:
+      label: Computer
+      options: [Windows 11, Windows 10, Linux, macOS, Other]
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Radio Elmer and CHIRP versions
+      description: ⚙ App settings → About Radio Elmer
+      placeholder: e.g. Radio Elmer 0.9.0-beta (CHIRP next-20261106)
+  - type: checkboxes
+    id: chirp
+    attributes:
+      label: Tried it in CHIRP?
+      options:
+        - label: The same thing works in the CHIRP app (so it's a Radio Elmer problem)
+  - type: textarea
+    id: report
+    attributes:
+      label: Problem report
+      description: ⚙ App settings → Something not working? → Save a problem report. Drag the zip file here.

@@ -1,0 +1,50 @@
+name: Radio test report
+description: Tell us how Radio Elmer works with your radio (it works, or it doesn't)
+labels: [radio-test]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Radio Elmer has only been tested with a few radios. Reports like this tell other hams
+        which radios work. Please try each step you're comfortable with.
+  - type: input
+    id: radio
+    attributes:
+      label: Radio make and model
+      placeholder: e.g. Quansheng UV-K5
+    validations:
+      required: true
+  - type: input
+    id: cable
+    attributes:
+      label: Programming cable
+      placeholder: e.g. USB with FTDI chip, 2-pin Kenwood plug
+  - type: dropdown
+    id: os
+    attributes:
+      label: Computer
+      options: [Windows 11, Windows 10, Linux, macOS, Other]
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Radio Elmer and CHIRP versions
+      description: ⚙ App settings → About Radio Elmer
+  - type: checkboxes
+    id: steps
+    attributes:
+      label: What worked
+      options:
+        - label: Read from radio
+        - label: Edit channels and send to radio
+        - label: The read-back after sending matched
+        - label: Find repeaters / add to the trip block
+        - label: Radio settings (squelch, beeps, display…)
+        - label: Live mode
+        - label: Sync from a base station radio
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything that didn't work, or needed a trick
+      description: Attach a problem report (⚙ App settings → Save a problem report) if something failed.

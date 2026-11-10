@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radio Elmer User Manual</title>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1b1f24;--muted:#5f6b7a;--line:#dde2e8;--accent:#1f6feb;--warn-bg:#fff8e5;--warn:#9a6700;--good-bg:#e9f7ee}
+@media (prefers-color-scheme: dark){:root:not([data-theme]){--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--warn-bg:#2b230f;--warn:#e3b341;--good-bg:#11261a;color-scheme:dark}}
+:root[data-theme="dark"],:root[data-theme="contrast"],:root[data-theme="night"]{--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--warn-bg:#2b230f;--warn:#e3b341;--good-bg:#11261a;color-scheme:dark}
+:root[data-theme="night"]{--bg:#000;--panel:#0d0000;--ink:#ff4a3a;--muted:#b33a2e;--line:#3a0d0a;--accent:#ff4a3a}
+:root[data-theme="chirp"]{--bg:#f0f0f0;--panel:#fff;--ink:#000;--muted:#505050;--line:#c8c8c8;--accent:#0078d7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;max-width:1180px;margin:0 auto;padding:24px 16px}
+nav.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;font-size:13.5px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+nav.toc ol{margin:0;padding-left:20px} nav.toc a{color:var(--ink);text-decoration:none} nav.toc a:hover{color:var(--accent)}
+main{min-width:0}
+header.top{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:20px}
+h1{margin:0 0 4px;font-size:26px} h1 small{font-weight:400;color:var(--muted);font-size:15px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 24px;margin-bottom:16px}
+h2{font-size:20px;margin:0 0 10px;padding-top:2px} h3{font-size:16px;margin:18px 0 6px}
+a{color:var(--accent)}
+.k{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:0 6px;font-weight:600;background:var(--bg);white-space:nowrap}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);padding:10px 14px;border-radius:6px;margin:10px 0}
+.tip{background:var(--good-bg);border-left:4px solid var(--accent);padding:10px 14px;border-radius:6px;margin:10px 0}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:14px} th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top} th{background:var(--bg)}
+code,.mono{font-family:ui-monospace,Consolas,monospace;font-size:13.5px}
+.printbtn{float:right;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:5px 14px;cursor:pointer;font:inherit}
+@media (max-width:820px){.wrap{grid-template-columns:1fr} nav.toc{position:static;max-height:none}}
+@media print{body{background:#fff;color:#000;font-size:11pt} .wrap{display:block;padding:0} nav.toc,.printbtn{display:none}
+  section,header.top{border:0;padding:0;margin:0 0 14pt;break-inside:auto} h2{break-after:avoid} a{color:#000}}
+</style>
+<script>
+try { const t = localStorage.getItem("theme"); if (t && t !== "auto") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+<b>Contents</b>
+<ol>
+<li><a href="#about">About Radio Elmer</a></li>
+<li><a href="#install">Installing and starting</a></li>
+<li><a href="#assistant">The setup assistant</a></li>
+<li><a href="#screen">Finding your way around</a></li>
+<li><a href="#read">Reading your radio</a></li>
+<li><a href="#channels">Channels</a></li>
+<li><a href="#check">Check</a></li>
+<li><a href="#repeaters">Find repeaters</a></li>
+<li><a href="#weather">Weather</a></li>
+<li><a href="#trips">Trips &amp; imports</a></li>
+<li><a href="#settings">Radio settings</a></li>
+<li><a href="#send">Sending to the radio</a></li>
+<li><a href="#radios">Several radios</a></li>
+<li><a href="#licences">Licences and what you may program</a></li>
+<li><a href="#equipment">Equipment and setup guide</a></li>
+<li><a href="#range">Range test (UV-50X2)</a></li>
+<li><a href="#listen">🎧 Listen</a></li>
+<li><a href="#backups">Backups &amp; files</a></li>
+<li><a href="#auto">Auto-connect and Live</a></li>
+<li><a href="#app">App settings and your files</a></li>
+<li><a href="#safety">Safety built in</a></li>
+<li><a href="#trouble">Troubleshooting</a></li>
+<li><a href="#chirp">Radio Elmer and the CHIRP app</a></li>
+<li><a href="#credits">Credits and licences</a></li>
+</ol>
+</nav>
+<main>
+<header class="top">
+<button class="printbtn" onclick="print()">Print</button>
+<h1>Radio Elmer <small>User manual</small></h1>
+<p>Radio Elmer is a desktop app for programming two-way radios, <b>powered by CHIRP</b>: it's built on CHIRP's radio drivers, so it can program hundreds of radio models by cable. It adds guidance, safety checks and travel tools aimed at newer amateur radio operators.</p>
+<p>The name comes from ham radio's word for a mentor: an <b>Elmer</b> is the experienced ham who helps a newcomer get licensed, choose and program a radio, put up an antenna and make a first contact. Radio Elmer tries to be that for programming your radios. (It was called Radio Desk before version 0.9.0.)</p>
+<p class="tip">This manual is inside Radio Elmer: open the <b>📖 Manual</b> tab, or press <span class="k">?</span> in the top bar. From there you can print it or open it in its own window.</p>
+</header>
+
+<section id="about">
+<h2>1. About Radio Elmer</h2>
+<p>Radio Elmer runs on your own computer and opens in its own window. Nothing is sent anywhere except the lookups you ask for (repeater lists, weather stations, call sign lookups, online receivers). Under the hood:</p>
+<ul>
+<li><b>CHIRP</b> (chirpmyradio.com) does the talking to the radio: reading its memory, understanding each model's channels and settings, and writing it back. Radio Elmer uses CHIRP's driver library as is.</li>
+<li><b>Radio Elmer</b> adds a guided way to work: a working copy you edit safely, a check for problems, repeater and weather search, trip channel blocks, keeping several radios in step, a backup of every read and send, and rules that only program frequencies you're licensed for.</li>
+</ul>
+<p>Three ideas run through the whole app:</p>
+<ol>
+<li><b>You edit a working copy, not the radio.</b> Changes reach the radio only when you press <b>Send to radio</b>, review the list of changes and confirm.</li>
+<li><b>Everything is backed up.</b> Each read and each send is saved, and backups are never deleted by Radio Elmer.</li>
+<li><b>Only what you're licensed for.</b> By default Radio Elmer refuses frequencies your licence doesn't cover (see <a href="#licences">Licences</a>).</li>
+</ol>
+</section>
+
+<section id="install">
+<h2>2. Installing and starting</h2>
+<h3>What you need</h3>
+<ul>
+<li><b>Windows 10 or 11:</b> nothing else if you use the <b>Windows package</b>, which includes Python and CHIRP's radio drivers. (Running from source needs Python 3.11 or newer from python.org and Git.)</li>
+<li><b>Linux:</b> Python 3.10 or newer and Git. macOS should work like Linux but hasn't been tested.</li>
+<li>The programming cable for each radio (for example a USB cable with an FTDI chip and the right plug for the radio).</li>
+</ul>
+<h3>Starting</h3>
+<p><b>Linux or macOS:</b> in a terminal, run <span class="mono">sh start-radio-elmer.sh</span> from the Radio Elmer folder. The first run tells you if anything is missing (on Ubuntu: <span class="mono">sudo apt install python3-venv python3-pip git</span>). To use a cable on Linux, add yourself to the <span class="mono">dialout</span> group (<span class="mono">sudo usermod -aG dialout $USER</span>, then log out and in).</p>
+<p><b>Windows installer:</b> run <b>Radio Elmer Setup</b> and follow the steps. It installs just for you (no administrator needed), adds <b>Radio Elmer</b>, <b>Radio Elmer user manual</b> and <b>Uninstall Radio Elmer</b> to the Start menu, and can add a desktop shortcut. Windows may warn that the publisher is unknown because the installer isn't code-signed: choose <b>More info</b>, then <b>Run anyway</b>. Uninstalling (from the Start menu or Apps &amp; features) removes the program but never your own files in Documents\Radio Elmer.</p>
+<p><b>Windows zip:</b> unzip it anywhere (for example into Documents) and double-click <b>Start Radio Elmer</b>. Nothing needs installing. To update Radio Elmer later, replace the folder with the new one; your own files are kept separately in Documents\Radio Elmer.</p>
+<p><b>Windows, from source:</b> double-click <b>Start Radio Elmer.bat</b>. A small black window opens. Leave it open while you use Radio Elmer; closing it quits the app. Radio Elmer opens in its own window. Only one Radio Elmer window opens at a time.</p>
+<p>From source, the first start takes a minute or two: it installs CHIRP's radio library into <span class="mono">%LOCALAPPDATA%\RadioElmer</span>. This is separate from the CHIRP desktop app, so both can be installed.</p>
+<div class="note">Radio Elmer only needs to run while you're using it. Close the black window when you're done.</div>
+</section>
+
+<section id="assistant">
+<h2>3. The setup assistant</h2>
+<p>The first time you start Radio Elmer, the setup assistant walks you through four things. You can run it again any time from <b>⚙ App settings → Open the setup assistant</b>.</p>
+<ol>
+<li><b>Your licence.</b> Type your call sign and press <b>Look up</b>. Radio Elmer fills in your licence class and expiry from FCC records (through callook.info). Check them and continue. No licence yet? Leave it blank; you can still listen online and program NOAA weather channels. A GMRS licence can be added by hand.</li>
+<li><b>Your home location.</b> Type your town as <i>City, ST</i> (for example <i>Waco, TX</i>), or use the computer's location. It's used to find nearby repeaters, weather stations and online receivers.</li>
+<li><b>Your radios.</b> Start typing the make and model and pick it from the list. Give it a nickname if you like, and say whether it's your <b>base station</b> (the main rig, usually mobile or at home) or a <b>portable</b> (a handheld). Add as many as you have. Models marked <b>✓ tested</b> have been tried with Radio Elmer; the others use the same CHIRP drivers but haven't been tried here yet.</li>
+<li><b>All set.</b> Plug in the cable, pick the radio and its port at the top, and press <b>Read from radio</b>.</li>
+</ol>
+</section>
+
+<section id="screen">
+<h2>4. Finding your way around</h2>
+<h3>The top bar</h3>
+<table>
+<tr><th>Item</th><th>What it does</th></tr>
+<tr><td>Call sign badges</td><td>Your amateur call sign and class, and your GMRS call sign, from your saved licences.</td></tr>
+<tr><td>📻 radio list</td><td>Which radio you're working on. Each radio has its own cable port, working copy and backups.</td></tr>
+<tr><td>Port list and <span class="k">↻</span></td><td>The cable's COM port. Likely programming cables are marked ★. ↻ looks again after plugging in.</td></tr>
+<tr><td>Generation (UV-50X2 only)</td><td>1st gen or G2. Both answer the cable the same way, so pick yours once; it's remembered.</td></tr>
+<tr><td><span class="k">Read from radio</span></td><td>Copies what's in the radio into Radio Elmer (and saves a backup).</td></tr>
+<tr><td><span class="k">Send to radio…</span></td><td>Shows your changes and, after you confirm, writes them to the radio. The number shows how many changes are waiting.</td></tr>
+<tr><td><span class="k">⚙</span> and the colour list</td><td>App settings, and the colour scheme.</td></tr>
+<tr><td><span class="k">?</span></td><td>This manual (the <b>📖 Manual</b> tab).</td></tr>
+<tr><td>Auto-connect, Live</td><td>See <a href="#auto">Auto-connect and Live</a>.</td></tr>
+</table>
+<h3>The tabs</h3>
+<p><b>Channels</b>, <b>Check</b>, <b>Find repeaters</b>, <b>Weather</b>, <b>Range test</b> (UV-50X2), <b>Equipment</b>, <b>Setup guide</b>, <b>Licenses</b>, <b>🎧 Listen</b>, <b>Trips &amp; imports</b>, <b>Radio settings</b>, <b>Backups &amp; files</b>, <b>⚙ App settings</b> and <b>📖 Manual</b>. Until a radio has been read, only the start panel, backups and settings are shown.</p>
+</section>
+
+<section id="read">
+<h2>5. Reading your radio</h2>
+<ol>
+<li>Plug the programming cable into the radio and the computer. Push the plug in firmly; a half-seated plug is the most common reason a radio doesn't answer.</li>
+<li>Turn the radio on. <b>Close the CHIRP app</b> if it's open: only one program can use the cable at a time.</li>
+<li>Pick the radio in the 📻 list and its port (marked ★).</li>
+<li>Press <b>Read from radio</b>. A progress bar shows while it reads (up to a minute or so).</li>
+</ol>
+<p>What was read is saved as a backup straight away, then becomes your <b>working copy</b>. You can also work without the radio by opening a saved image from <b>Backups &amp; files</b>.</p>
+<div class="note">You must read the radio in each session before Radio Elmer will let you send to it. That way you always edit what's really in the radio.</div>
+</section>
+
+<section id="channels">
+<h2>6. Channels</h2>
+<p>The channel list shows every memory in the working copy. Use the buttons above it to show a block (Home, Weather, GMRS/FRS, Trip, or All) and <b>Show empty</b> to see unused channels.</p>
+<h3>The channel plan</h3>
+<p>Radio Elmer organises channels in blocks so trips can be swapped in without touching your everyday channels:</p>
+<table>
+<tr><th>Channels</th><th>Used for</th></tr>
+<tr><td>0–19</td><td><b>Home</b>: your local repeaters and simplex. Locked unless you tick <b>Unlock home channels</b> for this session.</td></tr>
+<tr><td>20–29</td><td><b>Weather</b>: NOAA Weather Radio, receive-only, skipped when scanning.</td></tr>
+<tr><td>30–99</td><td>Free (or GMRS/FRS listen-only if you turn that on).</td></tr>
+<tr><td>100 and up</td><td><b>Trip</b>: replaced for each trip (100–199, or as far as your radio goes).</td></tr>
+</table>
+<h3>Editing a channel</h3>
+<p>Click a channel to open it. You can set the frequency, name (as long as your radio allows), offset direction (simplex, + up, − down, or receive-only), offset, tone (none, transmit tone, or tone squelch) and the CTCSS tone, power, mode and scan skip. From the same window you can <b>Copy there</b>, <b>Move there</b> or <b>Swap with</b> another channel, or delete it.</p>
+<h3>Changing several at once</h3>
+<p>Tick the boxes on the left. A bar appears to set power or mode, skip or include in scan, make receive-only, or delete the ticked channels. <b>Move / copy a block…</b> shifts a range of channels. <b>Print channel card</b> makes a pocket or car card of the channels shown.</p>
+</section>
+
+<section id="check">
+<h2>7. Check</h2>
+<p>Check looks through the working copy for problems and offers a fix for each one. The number on the tab shows how many it found. It looks for:</p>
+<ul>
+<li>channels on frequencies you're not licensed for, or that would transmit outside your privileges;</li>
+<li>weather channels on the wrong frequencies, or not skipped in scan;</li>
+<li>unusual repeater offsets, and missing tones;</li>
+<li>names that are confusing or repeated;</li>
+<li>the radio's frequency (VFO) mode set to transmit outside your privileges, which channel protections don't cover.</li>
+</ul>
+<p>Press a fix to apply it to the working copy, or <b>Fix all</b>. Fixes to home channels need the home channels unlocked.</p>
+</section>
+
+<section id="repeaters">
+<h2>8. Find repeaters</h2>
+<p>Type a place, or a route through towns: <i>Dallas, TX to Waco, TX to Austin, TX</i>. Add towns along the way for a better route. Choose the bands and how far from the route to look, then press <b>Find</b>.</p>
+<p>The results come from RepeaterBook (through CHIRP's copy, refreshed monthly). The <b>Updated</b> date shows how current each entry is. Only repeaters you can use are offered: both the output (where you listen) and the input (where you transmit) must be within your licence. Tick the ones you want and add them to the trip block.</p>
+<div class="tip">Check anything important before relying on it, for example with the repeater club's own website. Repeater listings go out of date.</div>
+</section>
+
+<section id="weather">
+<h2>9. Weather</h2>
+<p>Type a destination to find the nearest NOAA Weather Radio transmitters (the official weather.gov list). Radio Elmer puts them in channels 20–29, receive-only and skipped in scan, nearest first, then the rest of the seven weather frequencies.</p>
+</section>
+
+<section id="trips">
+<h2>10. Trips &amp; imports</h2>
+<ul>
+<li><b>Trip library</b>: save the current trip block under a name, and load it again later.</li>
+<li><b>Copy from another radio</b>: copy the home and weather channels, or the trip repeaters, from another of your radios. Trips are packed to fit a smaller radio; anything that doesn't fit is listed.</li>
+<li><b>Import a channel plan</b>: open or paste a channel plan file (<span class="mono">.json</span>) someone shared with you, check it, and apply it to the working copy. <b>Use plan.json from my Radio Elmer folder</b> loads one saved there.</li>
+<li><b>Import a CHIRP CSV</b>: bring in channels exported from the CHIRP app or another radio. Channels you're not licensed for are skipped and listed.</li>
+<li><b>Clear the trip block</b>: empty it before a new trip.</li>
+</ul>
+</section>
+
+<section id="settings">
+<h2>11. Radio settings</h2>
+<p>Every setting CHIRP supports for your radio (squelch, beeps, display, keys, power-on message, and so on), grouped as CHIRP groups them. Changes go into the working copy like channel changes.</p>
+<p>For the BTECH UV-50X2 there are two extras:</p>
+<ul>
+<li><b>Recommended setup</b> suggests mobile-friendly settings and corrects frequency (VFO) mode if it would transmit outside your privileges. Tick what you want and apply.</li>
+<li><b>Four windows (A–D)</b> sets what each of the four lines on the display shows, which is the main (transmit) window, and quad watch. <b>Suggest</b> fills them from your home channels or the current trip.</li>
+</ul>
+</section>
+
+<section id="send">
+<h2>12. Sending to the radio</h2>
+<ol>
+<li>Press <b>Send to radio…</b>. A list shows every change between what's in the radio and your working copy.</li>
+<li>Check it, then press <b>Upload this to the radio</b>. Keep the cable in and the radio on until it finishes.</li>
+<li>Radio Elmer reads the radio back to confirm everything arrived, and saves both the send and the check as backups.</li>
+<li>Turn the radio off and on again so it picks up every change.</li>
+</ol>
+<p>If anything goes wrong mid-send, the radio still has a backup: see <a href="#backups">Backups &amp; files</a> to restore.</p>
+</section>
+
+<section id="radios">
+<h2>13. Several radios</h2>
+<p>Add your radios in the setup assistant or in <b>Equipment → My radios</b>: type the make and model, choose base or portable, and press <b>Add this radio</b>. Any radio CHIRP can program by cable can be added (more than 500 models). <b>Remove</b> takes a radio off the list but keeps its files and backups.</p>
+<h3>Base station and portables</h3>
+<p>One radio is the <b>base station</b>; the others are <b>portables</b>. With <b>Keep in sync</b> on, a portable is matched to the base whenever you pick it: same channels wherever both radios can use them (home, weather, simplex and repeaters; trips packed to fit), so they can always talk to each other. <b>Sync now</b> does it on demand. Syncing only changes the portable's working copy; you review and send each radio yourself.</p>
+<h3>Cables</h3>
+<p>Each radio remembers its own port. Radios of the same model can share one cable (plug it into whichever you're programming). Radio Elmer won't use another model's cable by mistake.</p>
+</section>
+
+<section id="licences">
+<h2>14. Licences and what you may program</h2>
+<h3>Your licences</h3>
+<p>The <b>Licenses</b> tab has a page for each licence you've saved: call sign, class, status, grant and expiry dates, a renewal reminder, rules to remember, and (for amateur licences) a table of where your class may transmit and by which modes. Green rows are bands the current radio can use. GMRS has a channel chart and the family rules.</p>
+<p><b>✎ Add or edit a licence</b>: for an amateur licence, type the call sign and press <b>Look up</b> to fill the details from FCC records, or enter them yourself. GMRS licences are entered by hand (the FCC's ULS licence search has the details).</p>
+<h3>What Radio Elmer lets you program</h3>
+<table>
+<tr><th>Setting</th><th>What it means</th></tr>
+<tr><td><b>Only what my licence covers</b> (default)</td><td>Frequencies outside your licence are refused. Transmit is checked by class <i>and</i> mode, following FCC Part 97: for example FM on 144.05 MHz is refused because 144.0–144.1 is CW only, and a General may use voice on 7.200 MHz but not on 7.150. NOAA weather is allowed, receive-only.</td></tr>
+<tr><td><b>Also receive-only channels anywhere</b></td><td>Adds listening channels on any frequency your radio can receive (airband, marine, railroad, public service, MURS, GMRS…). They are always programmed receive-only. Transmit still follows your licence.</td></tr>
+<tr><td><b>No licence checks</b></td><td>For operators outside the US, or licences Radio Elmer doesn't know. Radio Elmer programs whatever your radio supports, like the CHIRP app. <b>You</b> are responsible for only transmitting where you're allowed. NOAA weather frequencies are still kept receive-only.</td></tr>
+</table>
+<p>An expired licence counts as no licence: Radio Elmer won't program amateur transmit frequencies until it's renewed and updated here. 60 m isn't offered (it uses fixed channels with special rules).</p>
+<h3>GMRS</h3>
+<p>Radio Elmer never programs GMRS/FRS to transmit; use a GMRS-certified radio for that. With an active GMRS licence you can allow <b>GMRS/FRS listen-only channels</b> on the GMRS page (off by default).</p>
+</section>
+
+<section id="equipment">
+<h2>15. Equipment and setup guide</h2>
+<p><b>Equipment</b> keeps a list of your station gear: each item's model, connectors, where it came from, its status (to order, ordered, received, in use…), quantity and notes. Above it, <b>How it connects</b> describes the chain from radio to antenna, and <b>SWR readings</b> records your antenna checks. <b>Print</b> makes a one-page station sheet.</p>
+<p><b>Start over with a blank list…</b> is for setting up a new station. Before anything changes it shows exactly what it will do: every item it will remove, by name, and that it also replaces <b>How it connects</b>. Your SWR readings, radios, channels, backups and setup guides aren't touched. If you go ahead, Radio Elmer first saves a copy of your list in your Radio Elmer folder (<span class="mono">equipment_saves</span>), then puts six empty starter rows in its place. <b>Restore a saved list…</b> shows every saved copy and brings any of them back (and saves the list it replaces, so nothing is ever lost).</p>
+<h3>Setup guides</h3>
+<p>The <b>Setup guide</b> tab makes a hook-up guide for each way you set up your station, for example <i>Home</i>, <i>Car</i> and <i>Field</i>. Press <b>＋ New guide</b> and answer a few questions: the kind of station (home, vehicle, or portable/field), which radio, the power source, the antenna and where it goes, the coax and how it gets there, whether you have an SWR meter, and a test frequency. Suggestions come from your Equipment list, and a preview updates as you type.</p>
+<p>Radio Elmer draws a numbered hook-up diagram and writes the steps: <b>Set it up</b>, <b>Check it</b> (SWR at low power on the test frequency, identifying with your call sign), <b>Taking it down</b> (vehicle and field), and <b>Before you drive</b> (vehicle). Add your own steps to any section, one per line. <b>✎ Edit</b> changes a guide, <b>Remove</b> takes it off the list, and <b>Print this guide</b> prints the one shown.</p>
+<p>Guides are kept in your Radio Elmer folder (<span class="mono">setup_guides.json</span>; saved pages in <span class="mono">setup_guides\</span>).</p>
+<div class="note">Until you've checked your antenna's SWR, new repeaters load at Low power and Recommended setup suggests Low everywhere. Tick <i>I've checked SWR</i> once your readings are good.</div>
+</section>
+
+<section id="range">
+<h2>16. Range test (UV-50X2)</h2>
+<p>Find out which repeaters you can actually reach from your station. Pick your station setup (which sets a rough reach estimate), then run a listening test: nearby repeaters load into channels 150–199 at Low power, only they are scanned, and you tick <b>Heard</b> or <b>Got in</b> for each. <b>Start quick test</b> walks you through one repeater at a time (about 30 seconds each): turn to it, say your call sign and "testing", and mark the result. Everything is put back when you press <b>Finish</b>.</p>
+<p>Results show as ✓ heard or ✗ not heard in Find repeaters, and <b>Tick what I can reach</b> uses them.</p>
+</section>
+
+<section id="listen">
+<h2>17. 🎧 Listen</h2>
+<p>A car-radio style tuner for listening online, through public KiwiSDR receivers (0–30 MHz: AM broadcast, shortwave, ham HF, time signals). It's for listening only and doesn't touch your radios.</p>
+<h3>Tuning</h3>
+<ul>
+<li>Pick a station from the categories (<b>On air now</b>, <b>Favorites</b>, News, Religious, Weather/sea/air, Big AM stations, Ham radio, Time signals, My channels, All), filtered by language, region and what's on air now.</li>
+<li>Or type a frequency: a whole number of 100 or more is kHz (<i>820</i>), a decimal is MHz (<i>7.2</i>).</li>
+<li>The buttons work like a car radio. <span class="k">⏮</span> <span class="k">⏭</span> <b>seek</b>: they jump to the previous or next station actually on the air (Radio Elmer looks at the band for a few seconds first). <span class="k">◀</span> <span class="k">▶</span> move <b>one channel</b> down or up; hold one to keep going. <span class="k">Play</span> starts and stops the sound.</li>
+<li><b>Step</b> sets how far ◀ ▶ move. <b>Auto (one channel)</b> picks the right step for the band: 10 kHz on AM broadcast (9 kHz outside the Americas), 5 kHz on shortwave broadcast, 1 kHz on the ham bands, 5 kHz on VHF/UHF FM. You can choose a fixed step instead.</li>
+<li><b>Presets 1–6</b> are your first six favourites: press one to tune straight to it. <span class="k">☆</span> saves the current station as a favourite (★ means it's already saved).</li>
+<li>The receiver's own panel appears below the tuner: press its <span class="k">▶</span> once per session to start the sound, and type your call sign if it asks for a name.</li>
+</ul>
+<h3>Receivers</h3>
+<p>Radio Elmer uses the receiver nearest your home. If it's busy it tries the next one. Open the <b>Receiver</b> box to pick one yourself, or press <b>Back to automatic</b>. 2 m, 70 cm and NOAA weather are above 30 MHz, which these receivers can't hear.</p>
+<h3>🎛 Sound processor</h3>
+<p><b>Noise reduction</b> (RNNoise, running on your computer), a <b>voice filter</b> that adjusts to AM, SSB or CW, and a <b>leveller</b> for fading stations, between the receiver and your speakers. Turn <b>Sound processor</b> off to hear the plain receiver for comparison. The signal meter shows the receiver's S-meter.</p>
+<div class="note">These receivers are run by volunteers and shared by everyone listening. Radio Elmer uses one connection at a time, identifies you by your call sign, and never changes a shared receiver's band by itself.</div>
+</section>
+
+<section id="backups">
+<h2>18. Backups &amp; files</h2>
+<ul>
+<li><b>Working copy</b>: discard your edits (back to what's in the radio), save a copy as an image (<span class="mono">.img</span>) or CSV, or open an image file.</li>
+<li><b>Compare</b>: see what changed between any two versions.</li>
+<li><b>Backups</b>: every read, send and check, newest first. <b>Open</b> one to look at it or restore it.</li>
+</ul>
+<h3>Restoring an old setup</h3>
+<p>Open the backup, check it, then <b>Send to radio</b> as usual.</p>
+</section>
+
+<section id="auto">
+<h2>19. Auto-connect and Live</h2>
+<ul>
+<li><b>Auto-connect</b> (on by default): when the radio is turned on with the cable in, Radio Elmer finds it within about 10 seconds and reads it. While the radio is off it waits.</li>
+<li><b>Live</b> (off by default): each change is sent to the radio about 6 seconds after you stop editing, then read back to confirm. Before each send the radio is read again and your edits are put on top, so changes made on the radio itself are kept. Anything Check calls a problem pauses Live. The radio is busy for about a minute during each update.</li>
+</ul>
+<p>Reading the radio never throws away unsent edits: they're kept on top of what was read.</p>
+</section>
+
+<section id="app">
+<h2>20. App settings and your files</h2>
+<p><b>⚙ App settings</b> (the last tab, or <span class="k">⚙</span> in the top bar):</p>
+<ul>
+<li><b>Colour scheme</b>: Auto (follows Windows), Light, Dark, <b>CHIRP classic</b> (the plain Windows look of the CHIRP app), High contrast, and <b>Night (red)</b>, which protects your night vision in the car or in the field.</li>
+<li><b>CHIRP radio drivers</b>: keep CHIRP's drivers up to date (see below).</li>
+<li><b>Your Radio Elmer folder</b>: where your files are kept.</li>
+<li><b>Setup</b>: the setup assistant, licences and radios.</li>
+</ul>
+<h3>Keeping CHIRP's drivers up to date</h3>
+<p>CHIRP fixes radio drivers and adds new radios often. Each time Radio Elmer starts, it asks CHIRP's website whether a newer CHIRP is out (the same check CHIRP itself makes). If one is, a notice at the top says so, at most once a week. To update, in <b>⚙ App settings → CHIRP radio drivers</b>:</p>
+<ol>
+<li>Press <b>Get CHIRP from chirpmyradio.com</b>. CHIRP's website opens in your browser; download CHIRP's Python package (the <span class="mono">.tar.gz</span> file).</li>
+<li>Press <b>Install the file you downloaded…</b> and pick that file.</li>
+</ol>
+<p>Please get CHIRP from its own website rather than anywhere else: the CHIRP project is free, and the companies that help pay for it look at how many people visit the site.</p>
+<p>Before a new version is used, Radio Elmer checks it: CHIRP loads, its drivers load, and each of your radios' working copies opens and reads with it. Only if that passes does it become the version used next time Radio Elmer starts. <b>Restart Radio Elmer</b> to switch. Every version stays listed, so <b>Use this one</b> takes you back if a radio misbehaves. If a version ever fails to load, Radio Elmer starts with the one it was installed with instead.</p>
+<h3>Where your files are</h3>
+<p>Everything that's yours is kept in <span class="mono">Documents\Radio Elmer</span>, separate from the app:</p>
+<table>
+<tr><th>File or folder</th><th>Holds</th></tr>
+<tr><td><span class="mono">radio_elmer.json</span></td><td>Your settings and radios</td></tr>
+<tr><td><span class="mono">license.json</span></td><td>Your licences</td></tr>
+<tr><td><span class="mono">working.img</span>, <span class="mono">radios\</span></td><td>Each radio's working copy</td></tr>
+<tr><td><span class="mono">backups\</span> (and <span class="mono">radios\&lt;name&gt;\backups</span>)</td><td>Every read and send</td></tr>
+<tr><td><span class="mono">trips\</span></td><td>Your trip library</td></tr>
+<tr><td><span class="mono">setup_guides.json</span>, <span class="mono">setup_guides\</span></td><td>Your setup guides</td></tr>
+<tr><td><span class="mono">station_equipment.json</span>, <span class="mono">web_receivers.json</span>, <span class="mono">reach_log.json</span></td><td>Equipment list, saved receivers, range test results</td></tr>
+</table>
+<p>Back up that folder to keep your setup. Updating or reinstalling Radio Elmer doesn't touch it.</p>
+</section>
+
+<section id="safety">
+<h2>21. Safety built in</h2>
+<ul>
+<li>Nothing goes to a radio until you review the changes and confirm.</li>
+<li>You must read the radio in each session before you can send to it.</li>
+<li>Every read and every send is saved as a backup, automatically, and never deleted by Radio Elmer.</li>
+<li>Home channels 0–19 are locked unless you unlock them for the session.</li>
+<li>Only frequencies you're licensed for are programmed (unless you change that setting), checked by licence class and mode.</li>
+<li>After each send the radio is read back to confirm everything arrived.</li>
+</ul>
+<p>You are the control operator: Radio Elmer programs radios but never transmits.</p>
+</section>
+
+<section id="trouble">
+<h2>22. Troubleshooting</h2>
+<table>
+<tr><th>Problem</th><th>Try</th></tr>
+<tr><td>"Radio did not respond" or the read stops</td><td>Push the cable plug in fully; make sure the radio is on; pick the right port (★, or ↻ after plugging in); close the CHIRP app if it's open; then try again.</td></tr>
+<tr><td>No port marked ★</td><td>The cable's driver may be missing. Unplug and replug it, press ↻, and check Windows Device Manager → Ports.</td></tr>
+<tr><td>Radio Elmer doesn't open</td><td>Look at the black window for a message. If it says Radio Elmer is already running, use the window that's open.</td></tr>
+<tr><td>A channel won't save: "not a frequency you're licensed for"</td><td>Check your licence on the Licenses tab (class and expiry). For receive-only listening, choose <i>Also receive-only channels anywhere</i>.</td></tr>
+<tr><td>No sound in 🎧 Listen</td><td>Press the receiver's own ▶ once. If a receiver is busy or far away, press <b>Back to automatic</b> or pick another.</td></tr>
+<tr><td>A radio reads or sends wrongly</td><td>Try the same in the CHIRP app. If it goes wrong there too, it's a CHIRP driver problem: report it on CHIRP's issue tracker (chirpmyradio.com). If only Radio Elmer gets it wrong, report it to Radio Elmer.</td></tr>
+<tr><td>You need help with a problem</td><td><b>⚙ App settings → Something not working? → Save a problem report</b> makes a zip to attach to your question. It leaves out your call signs, name, address and home location.</td></tr>
+<tr><td>Something went wrong after a send</td><td>Backups &amp; files → open the newest backup from before the send → Send to radio.</td></tr>
+</table>
+</section>
+
+<section id="chirp">
+<h2>23. Radio Elmer and the CHIRP app</h2>
+<p>Radio Elmer and the CHIRP app use the same radio drivers, and images saved by one open in the other. Only one of them can use a cable at a time, so close one before reading or sending with the other.</p>
+<p>Some CHIRP features aren't in Radio Elmer yet. Until they are, use the CHIRP app for:</p>
+<ul>
+<li>DCS (digital) squelch codes and polarity, cross-tone modes and split receive tones; tuning step, comments and per-radio extra channel fields; D-STAR channel fields;</li>
+<li>banks;</li>
+<li>radios that are programmed live over the cable (some Icom, Kenwood and Yaesu models);</li>
+<li>repeater sources other than RepeaterBook (RadioReference, DMR-MARC, satellites, European directories) and CHIRP's ready-made channel lists;</li>
+<li>cut, paste, sort, find and undo in the channel list; developer tools.</li>
+</ul>
+</section>
+
+<section id="credits">
+<h2>24. Credits and licences</h2>
+<ul>
+<li><b>CHIRP</b>, by Dan Smith (KK7DS) and the CHIRP contributors, chirpmyradio.com. GNU General Public License v3. Radio Elmer uses CHIRP's driver library and is shared under the same licence.</li>
+<li><b>RNNoise</b> noise suppression by Xiph.Org (BSD), through @shiguredo/rnnoise-wasm (Apache-2.0) and @sapphi-red/web-noise-suppressor (MIT).</li>
+<li>Repeater data: <b>RepeaterBook</b>, through CHIRP. Weather stations: <b>NOAA / weather.gov</b>. Call sign lookup: <b>callook.info</b> (FCC ULS data). Online receivers: the <b>KiwiSDR</b> network and its volunteer operators (receiver list from rx.linkfanel.net). Shortwave schedules: <b>EiBi</b> (eibispace.de).</li>
+</ul>
+<p>Licence rules follow FCC Part 97 (amateur) and Part 95 E (GMRS) as understood when this version was written. Always check the current rules: you, the licensee, are responsible for your transmissions.</p>
+</section>
+</main>
+</div>
+</body>
+</html>
