@@ -206,6 +206,14 @@ try { const t = localStorage.getItem("theme"); if (t && t !== "auto") document.d
 <section id="settings">
 <h2>11. Radio settings</h2>
 <p>Every setting CHIRP supports for your radio (squelch, beeps, display, keys, power-on message, and so on), grouped as CHIRP groups them. Changes go into the working copy like channel changes.</p>
+<h3>Start-up position</h3>
+<p>Radios come back on whatever channel they were left on; none has a “start on channel X” setting. So, with <b>Start-up position</b> on (the default), each time Radio Elmer reads a radio it puts it back in a safe place, which your next <b>Send</b> writes:</p>
+<ul>
+<li>every display line in <b>channel mode</b>, not frequency mode;</li>
+<li>the <b>top line (A)</b> and <b>bottom line (B)</b> on the channels you choose: suggested, a home channel on top and a NOAA weather channel (receive-only) below;</li>
+<li>frequency (VFO) mode parked on simplex you're licensed for (146.520 or 446.000) if it was somewhere you may not transmit, such as GMRS.</li>
+</ul>
+<p>The changes show in the list before anything is sent. A start-up channel that's empty on a particular radio is left alone there. Turn it off, or pick other channels, at the top of the <b>Radio settings</b> tab.</p>
 <p>For the BTECH UV-50X2 there are two extras:</p>
 <ul>
 <li><b>Recommended setup</b> suggests mobile-friendly settings and corrects frequency (VFO) mode if it would transmit outside your privileges. Tick what you want and apply.</li>
@@ -228,9 +236,14 @@ try { const t = localStorage.getItem("theme"); if (t && t !== "auto") document.d
 <h2>13. Several radios</h2>
 <p>Add your radios in the setup assistant or in <b>Equipment → My radios</b>: type the make and model, choose base or portable, and press <b>Add this radio</b>. Any radio CHIRP can program by cable can be added (more than 500 models). <b>Remove</b> takes a radio off the list but keeps its files and backups.</p>
 <h3>Base station and portables</h3>
-<p>One radio is the <b>base station</b>; the others are <b>portables</b>. With <b>Keep in sync</b> on, a portable is matched to the base whenever you pick it: same channels wherever both radios can use them (home, weather, simplex and repeaters; trips packed to fit), so they can always talk to each other. <b>Sync now</b> does it on demand. Syncing only changes the portable's working copy; you review and send each radio yourself.</p>
-<h3>Cables</h3>
+<p>One radio is the <b>base station</b>; the others are <b>portables</b>. With <b>Keep in sync</b> on, a portable is matched to the base whenever you pick it and every time you read it: same channels wherever both radios can use them (home, weather, simplex and repeaters; trips packed to fit), so they can always talk to each other. <b>Sync now</b> does it on demand for any radio that has been read. Syncing only changes the portable's working copy; you review and send each radio yourself.</p>
+<h3>Settings shared by radios of one model</h3>
+<p>A portable in sync can also take its <b>settings</b> from another radio of the same model: in <b>My radios</b>, under <i>Keep in sync</i>, choose <b>Settings: same as UV-5R #1</b> (the default for the second and later radios of a model) or <b>its own</b>. Squelch, beeps, display, keys and so on are copied whenever the portable is synced or read. Settings that belong to one radio are never copied: its name tag, factory calibration, band limits and ID codes. Channel/frequency mode and the display channels follow the start-up position instead (Radio settings).</p>
+<p>To program a portable: pick it at the top, plug it in, press <b>Read from radio</b> (it's matched to the base straight away), check the changes, and <b>Send to radio</b>. Do the same for each portable.</p>
+<h3>Cables, and telling twin radios apart</h3>
 <p>Each radio remembers its own port. Radios of the same model can share one cable (plug it into whichever you're programming). Radio Elmer won't use another model's cable by mistake.</p>
+<p>Two radios of the same model (say two UV-5Rs) look identical over the cable, so Radio Elmer gives each one a <b>name tag</b>: your name for it, written into the radio's power-on message (for “UV-5R #2”, the radio shows <i>UV-5R</i> / <i>#2</i> when you turn it on). The first time you read one, Radio Elmer uses whichever radio is picked at the top and adds the tag; it's written when you next send, and shows in the list of changes. After that, when you read a radio, Radio Elmer checks its tag: if you picked UV-5R #1 but the radio on the cable is #2, it switches to #2 by itself and tells you, so one radio's channels never end up in the other's copy. Live mode won't send to the wrong twin either. The names must differ (for example #1 and #2). Renaming a radio changes its tag the next time you read and send it. A label on the back of each radio helps too.</p>
+<p class="note">The name tag replaces the radio's own power-on message (often “WELCOME”) and sets it to show the message at power-on. Only radios whose CHIRP driver offers a power-on message can be tagged (the UV-5R family can); for others, always pick the right radio at the top before reading.</p>
 </section>
 
 <section id="licences">
@@ -252,7 +265,10 @@ try { const t = localStorage.getItem("theme"); if (t && t !== "auto") document.d
 
 <section id="equipment">
 <h2>15. Equipment and setup guide</h2>
-<p><b>Equipment</b> keeps a list of your station gear: each item's model, connectors, where it came from, its status (to order, ordered, received, in use…), quantity and notes. Above it, <b>How it connects</b> describes the chain from radio to antenna, and <b>SWR readings</b> records your antenna checks. <b>Print</b> makes a one-page station sheet.</p>
+<p><b>Equipment</b> keeps a list of your station gear: each item's model, connectors, where it came from, its status (to order, ordered, received, in use…), quantity and notes. Above it, <b>How it connects</b> describes the chain from radio to antenna, and <b>SWR readings</b> keeps a log of your antenna checks. <b>Print</b> makes a one-page station sheet, including your recent SWR readings.</p>
+<h3>SWR readings</h3>
+<p>Each time you check your antenna with an SWR meter, enter the date, the antenna (and how it's connected), the SWR on 2 m and 70 cm, and, if you like, the power the meter showed and a note such as <i>added foil strips</i>. Press <b>Save reading</b>: “Saved ✓” confirms it, and the reading goes to the top of the <b>History</b> table, so you can see whether a change helped. ✕ deletes a reading you entered by mistake.</p>
+<p>Test on Low, on a quiet simplex frequency in each band (for example 146.540 and 446.100, not a repeater channel): listen first, say your call sign and “testing”, and keep each key-up under 5 seconds. Readings are coloured: <b>1.5 or better</b> is good, up to 2 is fine, and <b>above 2</b> means check the antenna, its mounting and the connectors before using High power. When the newest readings on both bands are 1.5 or better, Radio Elmer stops recommending Low power.</p>
 <p><b>Start over with a blank list…</b> is for setting up a new station. Before anything changes it shows exactly what it will do: every item it will remove, by name, and that it also replaces <b>How it connects</b>. Your SWR readings, radios, channels, backups and setup guides aren't touched. If you go ahead, Radio Elmer first saves a copy of your list in your Radio Elmer folder (<span class="mono">equipment_saves</span>), then puts six empty starter rows in its place. <b>Restore a saved list…</b> shows every saved copy and brings any of them back (and saves the list it replaces, so nothing is ever lost).</p>
 <h3>Setup guides</h3>
 <p>The <b>Setup guide</b> tab makes a hook-up guide for each way you set up your station, for example <i>Home</i>, <i>Car</i> and <i>Field</i>. Press <b>＋ New guide</b> and answer a few questions: the kind of station (home, vehicle, or portable/field), which radio, the power source, the antenna and where it goes, the coax and how it gets there, whether you have an SWR meter, and a test frequency. Suggestions come from your Equipment list, and a preview updates as you type.</p>

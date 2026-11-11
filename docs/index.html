@@ -17,7 +17,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--accent)}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
 header.bar{border-bottom:1px solid var(--line);background:var(--panel)}
 header.bar .wrap{display:flex;align-items:center;gap:20px;min-height:60px;flex-wrap:wrap}
@@ -190,10 +190,11 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
       <a class="btn ghost" href="https://github.com/wcwilkins2025/radio-elmer/releases/latest">Get the zip</a>
     </div>
     <div class="card">
-      <h3>Linux (and macOS)</h3>
-      <p>From source, with Python 3.10 or newer (with venv and pip) and Git.</p>
-      <ul><li>Download the source.</li><li>Run <code>sh start-radio-elmer.sh</code>; it sets up CHIRP the first time.</li><li>Tested on Ubuntu, except reading and sending over a cable. macOS should work but hasn't been tested.</li></ul>
-      <p class="small" style="margin:12px 0 0">The source code goes up on GitHub after the beta. Until then the Windows downloads include it, and you can ask for a copy by <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">opening an issue</a>.</p>
+      <h3>Linux and Mac</h3>
+      <p>Needs Python 3.10 or newer. CHIRP is included.</p>
+      <ol><li>Download the <b>for Linux and Mac</b> zip and unzip it.</li><li>In a terminal, in that folder, run <code>sh start-radio-elmer.sh</code>. The first start sets things up (a minute or two).</li><li>Leave the terminal open while you use Radio Elmer.</li></ol>
+      <p class="small" style="margin:10px 0 0"><b>Mac:</b> the built-in Python is too old; install the latest from <a href="https://www.python.org/downloads/macos/">python.org</a> first. Tested on Ubuntu (except cable reading and sending); macOS hasn't been tested yet, so Mac reports are especially welcome.</p>
+      <a class="btn ghost" href="https://github.com/wcwilkins2025/radio-elmer/releases/latest">Get the Linux &amp; Mac zip</a>
     </div>
   </div>
   <p class="note"><b>This is a beta.</b> Windows will say the installer is from an “unknown publisher” because it isn't code-signed yet: choose <b>More info → Run anyway</b>. Radio Elmer backs up your radio before every send, but please keep your own copy of anything important, and <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">tell us what you find</a>.</p>
