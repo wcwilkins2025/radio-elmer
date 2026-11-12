@@ -23,6 +23,8 @@ header.bar{border-bottom:1px solid var(--line);background:var(--panel)}
 header.bar .wrap{display:flex;align-items:center;gap:20px;min-height:60px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
 .brand svg{width:30px;height:30px}
+.poweredby{font-size:12.5px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 10px;text-decoration:none;white-space:nowrap}
+.poweredby:hover{color:var(--accent);border-color:var(--accent)}
 nav.links{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap;font-size:15px}
 nav.links a{color:var(--muted);text-decoration:none} nav.links a:hover{color:var(--accent)}
 .hero{padding:56px 0 32px}
@@ -85,6 +87,7 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
     <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1f6feb"/><path d="M16 7v18M9 12a10 10 0 0 0 0 8M23 12a10 10 0 0 1 0 8M5 9a15 15 0 0 0 0 14M27 9a15 15 0 0 1 0 14" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
     Radio Elmer
   </a>
+  <a class="poweredby" href="#chirp" title="Radio Elmer programs radios through CHIRP's drivers">powered by CHIRP</a>
   <nav class="links" aria-label="Site">
     <a href="#features">Features</a>
     <a href="#tour">Tour</a>
@@ -99,7 +102,7 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
   <div>
     <span class="tag">Free · open source · beta 0.9.0</span>
     <h1>Program your radios with a mentor beside you.</h1>
-    <p class="lede">Radio Elmer is a free desktop app for programming two-way radios. It's <b>powered by CHIRP</b>, so it works with hundreds of cable-programmable radios, and it adds guidance, licence checks and safety nets for newer hams.</p>
+    <p class="lede">Radio Elmer is a free desktop app for programming two-way radios. It's <a href="#chirp"><b>powered by CHIRP</b></a>, so it works with hundreds of cable-programmable radios, and it adds guidance, licence checks and safety nets for newer hams.</p>
     <div class="cta">
       <a class="btn primary" href="#download">Download free</a>
       <a class="btn ghost" href="manual.html">Read the manual</a>
@@ -202,11 +205,18 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
   <p class="note"><b>This is a beta.</b> Windows will say the installer is from an “unknown publisher” because it isn't code-signed yet: choose <b>More info → Run anyway</b>. Radio Elmer backs up your radio before every send, but please keep your own copy of anything important, and <a href="#community">tell us what you find</a>.</p>
 </div></section>
 
-<section><div class="wrap">
+<section id="chirp"><div class="wrap">
   <div class="chirp">
-    <h2>Powered by CHIRP</h2>
-    <p>Radio Elmer talks to radios through the drivers of <a href="https://chirpmyradio.com">CHIRP</a>, the free radio programming project started by Dan Smith, KK7DS, and its many contributors. A snapshot of CHIRP comes with Radio Elmer, and the app tells you when a newer one is out so you can download it from chirpmyradio.com.</p>
-    <p style="margin:0">Radio Elmer is a separate project. Please report problems with Radio Elmer here, not to the CHIRP project. If you'd rather have CHIRP's own app, it's at <a href="https://chirpmyradio.com">chirpmyradio.com</a>.</p>
+    <h2>Built on CHIRP, with thanks</h2>
+    <p><b>Radio Elmer wouldn't exist without <a href="https://chirpmyradio.com">CHIRP</a>.</b> Every radio Radio Elmer programs, it programs through CHIRP's radio drivers, used unchanged. CHIRP is free, open-source radio programming software, trusted by radio enthusiasts since 2008. It was created by <b>Dan Smith, KK7DS</b>, and is built by many volunteer contributors who work out how each radio model talks to a computer.</p>
+    <p>Radio Elmer adds a guided way of working on top: licence checks, trip planning, review before sending, setup guides. The hard part, talking to hundreds of different radios, is CHIRP's. A snapshot of CHIRP comes with Radio Elmer, and the app tells you when a newer one is out so you can get it from chirpmyradio.com.</p>
+    <h3 style="margin:16px 0 6px;font-size:17px">How you can support CHIRP</h3>
+    <ul style="margin:0 0 10px;padding-left:20px">
+      <li>Get CHIRP updates from <a href="https://chirpmyradio.com/projects/chirp/wiki/Download">chirpmyradio.com</a>; Radio Elmer tells you when there's a new one.</li>
+      <li>If a radio reads or writes wrongly in the CHIRP app too, report it to the <a href="https://chirpmyradio.com/projects/chirp/wiki/How_To_Get_Help">CHIRP project</a>.</li>
+      <li>If you can, help them test or write drivers for new radios.</li>
+    </ul>
+    <p style="margin:0">Radio Elmer is a separate project, not made or supported by CHIRP. Please bring Radio Elmer questions and problems to <a href="#community">our community</a>, not to CHIRP. If you'd rather use CHIRP's own app, it's at <a href="https://chirpmyradio.com">chirpmyradio.com</a>.</p>
   </div>
 </div></section>
 
@@ -227,7 +237,7 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
 
 <footer><div class="wrap">
   <span>Radio Elmer 0.9.0-beta · free software under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a></span>
-  <span>Powered by <a href="https://chirpmyradio.com">CHIRP</a> · <a href="manual.html">Manual</a> · <a href="https://github.com/wcwilkins2025/radio-elmer/discussions">Discussions</a> · <a href="https://github.com/wcwilkins2025/radio-elmer">GitHub</a></span>
+  <span>Powered by <a href="https://chirpmyradio.com">CHIRP</a>, with thanks to Dan Smith, KK7DS, and CHIRP's contributors · <a href="manual.html">Manual</a> · <a href="https://github.com/wcwilkins2025/radio-elmer/discussions">Discussions</a> · <a href="https://github.com/wcwilkins2025/radio-elmer">GitHub</a></span>
 </div></footer>
 </body>
 </html>
