@@ -46,6 +46,8 @@ h2{font-size:28px;margin:0 0 8px;letter-spacing:-.3px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
 .card h3{margin:0 0 6px;font-size:17px}
 .card p{margin:0;color:var(--muted);font-size:15px}
+.community .card{display:flex;flex-direction:column;gap:12px}
+.community .card .btn{align-self:flex-start;margin-top:auto}
 .tour{display:grid;gap:36px}
 .tour figure{margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:28px;align-items:center}
 .tour figure:nth-child(even){grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
@@ -88,7 +90,7 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
     <a href="#tour">Tour</a>
     <a href="#download">Download</a>
     <a href="manual.html">Manual</a>
-    <a href="https://github.com/wcwilkins2025/radio-elmer">GitHub</a>
+    <a href="#community">Help &amp; community</a>
   </nav>
 </div></header>
 
@@ -197,7 +199,7 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
       <a class="btn ghost" href="https://github.com/wcwilkins2025/radio-elmer/releases/latest">Get the Linux &amp; Mac zip</a>
     </div>
   </div>
-  <p class="note"><b>This is a beta.</b> Windows will say the installer is from an “unknown publisher” because it isn't code-signed yet: choose <b>More info → Run anyway</b>. Radio Elmer backs up your radio before every send, but please keep your own copy of anything important, and <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">tell us what you find</a>.</p>
+  <p class="note"><b>This is a beta.</b> Windows will say the installer is from an “unknown publisher” because it isn't code-signed yet: choose <b>More info → Run anyway</b>. Radio Elmer backs up your radio before every send, but please keep your own copy of anything important, and <a href="#community">tell us what you find</a>.</p>
 </div></section>
 
 <section><div class="wrap">
@@ -208,19 +210,24 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
   </div>
 </div></section>
 
-<section id="help"><div class="wrap">
-  <h2>Help and feedback</h2>
-  <div class="features">
-    <div class="card"><h3>📖 The manual</h3><p>Everything, from the first read of your radio to troubleshooting. It's also inside the app. <a href="manual.html">Open the manual</a>.</p></div>
-    <div class="card"><h3>🐞 Report a problem</h3><p>Use <b>Report a problem</b> in App settings: it gathers the details with call signs removed. Then <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">open an issue</a>.</p></div>
-    <div class="card"><h3>📡 Tested a radio?</h3><p>Tell us which radios work. Each report helps the next ham. <a href="https://github.com/wcwilkins2025/radio-elmer/issues/new/choose">Share a radio test</a>.</p></div>
+<section id="community"><div class="wrap">
+  <h2>Help &amp; community</h2>
+  <p class="sub">Questions, bugs and radio reports all go to the project's GitHub page. Reading is open to everyone; posting needs a free GitHub account.</p>
+  <div class="features community">
+    <div class="card"><h3>💬 Discussion board</h3><p>Ask a question, share how you set up your station, suggest an idea, or help another ham.</p><a class="btn primary" href="https://github.com/wcwilkins2025/radio-elmer/discussions">Join the discussion</a></div>
+    <div class="card"><h3>🐞 Report a bug</h3><p>Something went wrong? In Radio Elmer, use <b>App settings → Report a problem</b> to gather the details (call signs are removed), then paste them into the form.</p><a class="btn primary" href="https://github.com/wcwilkins2025/radio-elmer/issues/new?template=bug_report.yml">Report a bug</a></div>
+    <div class="card"><h3>📡 Share a radio test</h3><p>Tried Radio Elmer with your radio? Tell us whether reading and sending worked. Each report helps the next ham with that model.</p><a class="btn ghost" href="https://github.com/wcwilkins2025/radio-elmer/issues/new?template=radio_test.yml">Share a radio test</a></div>
+    <div class="card"><h3>💡 Suggest a feature</h3><p>An idea for Radio Elmer? Post it in the discussion board's Ideas section, where others can add to it.</p><a class="btn ghost" href="https://github.com/wcwilkins2025/radio-elmer/discussions/categories/ideas">Suggest an idea</a></div>
+    <div class="card"><h3>📖 The manual</h3><p>Everything from the first read of your radio to troubleshooting. It's also inside the app (📖 Manual).</p><a class="btn ghost" href="manual.html">Open the manual</a></div>
+    <div class="card"><h3>🔎 Known problems</h3><p>See what's already been reported, and whether it's fixed, before posting a new bug.</p><a class="btn ghost" href="https://github.com/wcwilkins2025/radio-elmer/issues">See reported bugs</a></div>
   </div>
+  <p class="small" style="margin-top:14px">A problem that also happens in the CHIRP app itself is a CHIRP radio-driver issue: please report those to the <a href="https://chirpmyradio.com">CHIRP project</a>.</p>
 </div></section>
 </main>
 
 <footer><div class="wrap">
   <span>Radio Elmer 0.9.0-beta · free software under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a></span>
-  <span>Powered by <a href="https://chirpmyradio.com">CHIRP</a> · <a href="manual.html">Manual</a> · <a href="https://github.com/wcwilkins2025/radio-elmer">GitHub</a></span>
+  <span>Powered by <a href="https://chirpmyradio.com">CHIRP</a> · <a href="manual.html">Manual</a> · <a href="https://github.com/wcwilkins2025/radio-elmer/discussions">Discussions</a> · <a href="https://github.com/wcwilkins2025/radio-elmer">GitHub</a></span>
 </div></footer>
 </body>
 </html>

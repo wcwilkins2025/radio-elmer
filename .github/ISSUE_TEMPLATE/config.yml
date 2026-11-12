@@ -1,5 +1,8 @@
 blank_issues_enabled: true
 contact_links:
+  - name: A question, an idea, or help setting up
+    url: https://github.com/wcwilkins2025/radio-elmer/discussions
+    about: Ask in the discussion board. Bug reports and radio tests go in the forms above.
   - name: A radio reads or writes wrongly in the CHIRP app too
     url: https://chirpmyradio.com
     about: That's a CHIRP driver problem. Please report it to the CHIRP project.
