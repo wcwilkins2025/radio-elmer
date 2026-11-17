@@ -10,9 +10,9 @@
 <meta property="og:image" content="https://radioelmer.org/images/channels.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6feb'/%3E%3Cpath d='M16 7v18M9 12a10 10 0 0 0 0 8M23 12a10 10 0 0 1 0 8M5 9a15 15 0 0 0 0 14M27 9a15 15 0 0 1 0 14' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
-:root{--bg:#f6f7f9;--panel:#fff;--ink:#1b1f24;--muted:#5b6675;--line:#dde2e8;--accent:#1f6feb;--accent-ink:#fff;--soft:#eaf1fe;--warn-bg:#fff8e5;--warn:#9a6700}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--accent-ink:#0b0e13;--soft:#16233a;--warn-bg:#2b230f;--warn:#e3b341;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--accent-ink:#0b0e13;--soft:#16233a;--warn-bg:#2b230f;--warn:#e3b341;color-scheme:dark}
+:root{--bg:#f5efe2;--panel:#fffaf0;--ink:#2b2a24;--muted:#5d5848;--line:#e0d5bd;--accent:#9a4f1f;--accent-hover:#7d3f17;--accent-ink:#fff;--soft:#efe3d6;--warn-bg:#f2e7cd;--warn:#6e4528;--head:#2f4a32}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1a1d16;--panel:#252a1f;--ink:#ece5d4;--muted:#b5ad99;--line:#3a3f31;--accent:#d9884c;--accent-hover:#e9a068;--accent-ink:#1a1d16;--soft:#3a2b20;--warn-bg:#3b3220;--warn:#e0b450;--head:#cfdcb8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a1d16;--panel:#252a1f;--ink:#ece5d4;--muted:#b5ad99;--line:#3a3f31;--accent:#d9884c;--accent-hover:#e9a068;--accent-ink:#1a1d16;--soft:#3a2b20;--warn-bg:#3b3220;--warn:#e0b450;--head:#cfdcb8;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -30,16 +30,17 @@ nav.links a{color:var(--muted);text-decoration:none} nav.links a:hover{color:var
 .hero{padding:56px 0 32px}
 .hero .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;align-items:center}
 .tag{display:inline-block;font-size:13px;font-weight:600;color:var(--accent);background:var(--soft);border-radius:999px;padding:3px 12px;margin-bottom:14px}
-h1{font-size:44px;line-height:1.1;margin:0 0 14px;letter-spacing:-.5px}
+h1{font-size:44px;line-height:1.1;margin:0 0 14px;letter-spacing:-.5px;color:var(--head)}
 .lede{font-size:19px;color:var(--muted);margin:0 0 24px}
 .cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .btn{display:inline-block;padding:11px 20px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--accent)}
 .btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
 .btn.ghost{color:var(--accent);background:transparent}
 .small{font-size:14px;color:var(--muted)}
-.shot{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);box-shadow:0 10px 30px rgba(15,25,40,.10)}
+.shot{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel);box-shadow:0 10px 30px rgba(43,42,36,.12)}
 section{padding:40px 0}
-h2{font-size:28px;margin:0 0 8px;letter-spacing:-.3px}
+h2{font-size:28px;margin:0 0 8px;letter-spacing:-.3px;color:var(--head)}
 .sub{color:var(--muted);margin:0 0 24px;max-width:720px}
 .elmer{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 28px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
 .elmer .q{font-size:40px;line-height:1;color:var(--accent);font-weight:700}
@@ -66,6 +67,8 @@ h2{font-size:28px;margin:0 0 8px;letter-spacing:-.3px}
 .chirp{background:var(--soft);border-radius:14px;padding:24px 28px}
 .chirp p{margin:0 0 8px}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14px}
+.hr-family{flex-basis:100%;margin:6px 0 0;color:var(--muted);font-size:14px}
+.hr-family a{color:var(--accent)}
 footer .wrap{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
 code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
 @media (max-width:860px){
@@ -238,6 +241,8 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:14px}
 <footer><div class="wrap">
   <span>Radio Elmer 0.9.0-beta · free software under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a><br>Visits to this site are counted anonymously with Cloudflare Web Analytics: no cookies, no tracking. The Radio Elmer app itself sends no usage data.</span>
   <span>Powered by <a href="https://chirpmyradio.com">CHIRP</a>, with thanks to Dan Smith, KK7DS, and CHIRP's contributors · <a href="manual.html">Manual</a> · <a href="https://github.com/wcwilkins2025/radio-elmer/discussions">Discussions</a> · <a href="https://github.com/wcwilkins2025/radio-elmer">GitHub</a></span>
+
+  <p class="hr-family">Part of <a href="https://homesteadready.org/">Homestead Ready</a>, free tools for land, homesteading, readiness and radio. <a href="https://www.facebook.com/groups/homesteadready" rel="noopener">Join the Facebook group</a>.</p>
 </div></footer>
 <!-- Cloudflare Web Analytics: anonymous visit counts, no cookies --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6e3da5add4e54a21a39d3fa37662ff8a"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

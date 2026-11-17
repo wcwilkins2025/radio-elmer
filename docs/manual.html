@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Radio Elmer User Manual</title>
+<meta name="description" content="The Radio Elmer user manual: programming two-way radios with CHIRP's drivers, licence checks, repeaters, SWR testing, several radios and troubleshooting.">
 <style>
-:root{--bg:#f6f7f9;--panel:#fff;--ink:#1b1f24;--muted:#5f6b7a;--line:#dde2e8;--accent:#1f6feb;--warn-bg:#fff8e5;--warn:#9a6700;--good-bg:#e9f7ee}
-@media (prefers-color-scheme: dark){:root:not([data-theme]){--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--warn-bg:#2b230f;--warn:#e3b341;--good-bg:#11261a;color-scheme:dark}}
-:root[data-theme="dark"],:root[data-theme="contrast"],:root[data-theme="night"]{--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--warn-bg:#2b230f;--warn:#e3b341;--good-bg:#11261a;color-scheme:dark}
-:root[data-theme="night"]{--bg:#000;--panel:#0d0000;--ink:#ff4a3a;--muted:#b33a2e;--line:#3a0d0a;--accent:#ff4a3a}
-:root[data-theme="chirp"]{--bg:#f0f0f0;--panel:#fff;--ink:#000;--muted:#505050;--line:#c8c8c8;--accent:#0078d7}
+:root{--bg:#f5efe2;--panel:#fffaf0;--ink:#2b2a24;--muted:#5d5848;--line:#e0d5bd;--accent:#9a4f1f;--warn-bg:#f2e7cd;--warn:#6e4528;--good-bg:#e2ebdc;--head:#2f4a32}
+@media (prefers-color-scheme: dark){:root:not([data-theme]){--bg:#1a1d16;--panel:#252a1f;--ink:#ece5d4;--muted:#b5ad99;--line:#3a3f31;--accent:#d9884c;--warn-bg:#3b3220;--warn:#e0b450;--good-bg:#2a3424;--head:#cfdcb8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1a1d16;--panel:#252a1f;--ink:#ece5d4;--muted:#b5ad99;--line:#3a3f31;--accent:#d9884c;--warn-bg:#3b3220;--warn:#e0b450;--good-bg:#2a3424;--head:#cfdcb8;color-scheme:dark}
+:root[data-theme="contrast"],:root[data-theme="night"]{--bg:#0f1217;--panel:#171b22;--ink:#e6e9ee;--muted:#9aa5b4;--line:#2a313b;--accent:#4c8dff;--warn-bg:#2b230f;--warn:#e3b341;--good-bg:#11261a;--head:var(--ink);color-scheme:dark}
+:root[data-theme="night"]{--bg:#000;--panel:#0d0000;--ink:#ff4a3a;--muted:#b33a2e;--line:#3a0d0a;--accent:#ff4a3a;--head:#ff4a3a}
+:root[data-theme="chirp"]{--bg:#f0f0f0;--panel:#fff;--ink:#000;--muted:#505050;--line:#c8c8c8;--accent:#0078d7;--head:#000}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
 .wrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;max-width:1180px;margin:0 auto;padding:24px 16px}
@@ -17,9 +19,9 @@ nav.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);
 nav.toc ol{margin:0;padding-left:20px} nav.toc a{color:var(--ink);text-decoration:none} nav.toc a:hover{color:var(--accent)}
 main{min-width:0}
 header.top{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:20px}
-h1{margin:0 0 4px;font-size:26px} h1 small{font-weight:400;color:var(--muted);font-size:15px}
+h1{margin:0 0 4px;font-size:26px;color:var(--head,var(--ink))} h1 small{font-weight:400;color:var(--muted);font-size:15px}
 section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 24px;margin-bottom:16px}
-h2{font-size:20px;margin:0 0 10px;padding-top:2px} h3{font-size:16px;margin:18px 0 6px}
+h2{font-size:20px;margin:0 0 10px;padding-top:2px;color:var(--head,var(--ink))} h3{font-size:16px;margin:18px 0 6px}
 a{color:var(--accent)}
 .k{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:0 6px;font-weight:600;background:var(--bg);white-space:nowrap}
 .note{background:var(--warn-bg);border-left:4px solid var(--warn);padding:10px 14px;border-radius:6px;margin:10px 0}
@@ -152,6 +154,7 @@ try { const t = localStorage.getItem("theme"); if (t && t !== "auto") document.d
 <section id="channels">
 <h2>6. Channels</h2>
 <p>The channel list shows every memory in the working copy. Use the buttons above it to show a block (Home, Weather, GMRS/FRS, Trip, or All) and <b>Show empty</b> to see unused channels.</p>
+<p>The <b>Miles</b> column shows how far each repeater is from your home town (set on the Range test or Find repeaters tab), from the repeater listing. A <b>?</b> after the number means it was matched by frequency only, so it may be a different repeater on the same frequency; hover over it to see which. Simplex and weather channels have no distance. The printed channel card has the miles too.</p>
 <h3>The channel plan</h3>
 <p>Radio Elmer organises channels in blocks so trips can be swapped in without touching your everyday channels:</p>
 <table>
@@ -265,15 +268,16 @@ try { const t = localStorage.getItem("theme"); if (t && t !== "auto") document.d
 
 <section id="equipment">
 <h2>15. Equipment and setup guide</h2>
-<p><b>Equipment</b> keeps a list of your station gear: each item's model, connectors, where it came from, its status (to order, ordered, received, in use…), quantity and notes. Above it, <b>How it connects</b> describes the chain from radio to antenna, and <b>SWR readings</b> keeps a log of your antenna checks. <b>Print</b> makes a one-page station sheet, including your recent SWR readings.</p>
-<h3>SWR readings</h3>
-<p>Each time you check your antenna with an SWR meter, enter the date, the antenna (and how it's connected), the SWR on 2 m and 70 cm, and, if you like, the power the meter showed and a note such as <i>added foil strips</i>. Press <b>Save reading</b>: “Saved ✓” confirms it, and the reading goes to the top of the <b>History</b> table, so you can see whether a change helped. ✕ deletes a reading you entered by mistake.</p>
-<p>Test on Low, on a quiet simplex frequency in each band (for example 146.540 and 446.100, not a repeater channel): listen first, say your call sign and “testing”, and keep each key-up under 5 seconds. Readings are coloured: <b>1.5 or better</b> is good, up to 2 is fine, and <b>above 2</b> means check the antenna, its mounting and the connectors before using High power. When the newest readings on both bands are 1.5 or better, Radio Elmer stops recommending Low power.</p>
+<p><b>Equipment</b> keeps a list of your station gear: each item's model, connectors, where it came from, its status (to order, ordered, received, in use…), quantity and notes. Above it, <b>How it connects</b> describes the chain from radio to antenna, and your antenna checks are on the <b>📶 SWR test</b> tab. <b>Print</b> makes a one-page station sheet, including your recent SWR readings.</p>
 <p><b>Start over with a blank list…</b> is for setting up a new station. Before anything changes it shows exactly what it will do: every item it will remove, by name, and that it also replaces <b>How it connects</b>. Your SWR readings, radios, channels, backups and setup guides aren't touched. If you go ahead, Radio Elmer first saves a copy of your list in your Radio Elmer folder (<span class="mono">equipment_saves</span>), then puts six empty starter rows in its place. <b>Restore a saved list…</b> shows every saved copy and brings any of them back (and saves the list it replaces, so nothing is ever lost).</p>
 <h3>Setup guides</h3>
 <p>The <b>Setup guide</b> tab makes a hook-up guide for each way you set up your station, for example <i>Home</i>, <i>Car</i> and <i>Field</i>. Press <b>＋ New guide</b> and answer a few questions: the kind of station (home, vehicle, or portable/field), which radio, the power source, the antenna and where it goes, the coax and how it gets there, whether you have an SWR meter, and a test frequency. Suggestions come from your Equipment list, and a preview updates as you type.</p>
 <p>Radio Elmer draws a numbered hook-up diagram and writes the steps: <b>Set it up</b>, <b>Check it</b> (SWR at low power on the test frequency, identifying with your call sign), <b>Taking it down</b> (vehicle and field), and <b>Before you drive</b> (vehicle). Add your own steps to any section, one per line. <b>✎ Edit</b> changes a guide, <b>Remove</b> takes it off the list, and <b>Print this guide</b> prints the one shown.</p>
 <p>Guides are kept in your Radio Elmer folder (<span class="mono">setup_guides.json</span>; saved pages in <span class="mono">setup_guides\</span>).</p>
+<h3>📶 SWR test</h3>
+<p>The <b>📶 SWR test</b> tab walks you through checking an antenna with an SWR meter, one step at a time: connect the meter (radio → short jumper → meter <b>TX</b>; meter <b>ANT</b> → antenna cable), set Low power and a simplex test channel (Radio Elmer suggests one on each band from your radio's channels), listen first, then say your call sign and “testing” and read the meter. Type each reading in as you go and Radio Elmer tells you what it means: 1.5 or better is excellent, up to 2 is good, up to 3 is usable on Low only, and above 3 means stop and find the problem. The tab also has a list of what to check when SWR is high.</p>
+<p>Each time you check your antenna with an SWR meter, enter the date, the antenna (and how it's connected), the SWR on 2 m and 70 cm, and, if you like, the power the meter showed and a note such as <i>added foil strips</i>. Press <b>Save reading</b>: “Saved ✓” confirms it, and the reading goes to the top of the <b>History</b> table, so you can see whether a change helped. ✕ deletes a reading you entered by mistake.</p>
+<p>Test on Low, on a quiet simplex frequency in each band (for example 146.540 and 446.100, not a repeater channel): listen first, say your call sign and “testing”, and keep each key-up under 5 seconds. Readings are coloured: <b>1.5 or better</b> is good, up to 2 is fine, and <b>above 2</b> means check the antenna, its mounting and the connectors before using High power. When the newest readings on both bands are 1.5 or better, Radio Elmer stops recommending Low power.</p>
 <div class="note">Until you've checked your antenna's SWR, new repeaters load at Low power and Recommended setup suggests Low everywhere. Tick <i>I've checked SWR</i> once your readings are good.</div>
 </section>
 
@@ -406,6 +410,8 @@ try { const t = localStorage.getItem("theme"); if (t && t !== "auto") document.d
 </section>
 </main>
 </div>
+<style>.hr-family{max-width:1180px;margin:0 auto;padding:0 16px 28px;color:var(--muted);font-size:14px}.hr-family a{color:var(--accent)}</style>
+<p class="hr-family">Part of <a href="https://homesteadready.org/">Homestead Ready</a>, free tools for land, homesteading, readiness and radio. <a href="https://www.facebook.com/groups/homesteadready" rel="noopener">Join the Facebook group</a>.</p>
 <!-- Cloudflare Web Analytics: anonymous visit counts, no cookies --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6e3da5add4e54a21a39d3fa37662ff8a"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

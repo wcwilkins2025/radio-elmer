@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://radioelmer.org/sitemap.xml
